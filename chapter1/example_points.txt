@@ -1,0 +1,11 @@
+10
+Bobb   20   50
+Joey   20   40
+Lucy   20   32
+Mark   25   29
+Suzy   30   75
+Stac   27   54
+Trac   29   81
+John   15   105
+Kurt   13   33
+Chad   33   89

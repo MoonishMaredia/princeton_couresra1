@@ -1,3 +1,5 @@
+import edu.princeton.cs.algs4.StdOut;
+
 import java.util.Arrays;
 
 import static java.lang.System.out;
@@ -93,12 +95,19 @@ public class Exercises {
         System.out.println(Arrays.deepToString(newarr));
     }
 
+    public void sec1ex21(String a, int b, int c) {
+        float avg = (float) b / c;
+        StdOut.printf(a + " " + b + " " + c + " " + "%.4f\n", avg);
+    }
+
     public static void main(String[] args) {
 
         Exercises test = new Exercises();
-        test.sec1ex1();
-        test.sec1ex2();
-        test.sec1ex8();
+
+//        test.sec1ex1();
+//        test.sec1ex2();
+//        test.sec1ex8();
+
 
 //        int x = Integer.parseInt(args[0]);
 //        int y = Integer.parseInt(args[1]);
@@ -115,9 +124,20 @@ public class Exercises {
 //        test.sec1ex7();
 //        test.sec1ex8();
 
-        int[][] testarr = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-        System.out.println(Arrays.deepToString(testarr));
-        test.sec1ex13(testarr);
+//        int[][] testarr = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+//        System.out.println(Arrays.deepToString(testarr));
+//        test.sec1ex13(testarr);
+
+
+//        In in = new In(args[0]);
+//        int n = in.readInt();
+//
+//        for (int i = 0; i < n; i++) {
+//            String a = in.readString();
+//            int b = in.readInt();
+//            int c = in.readInt();
+//            test.sec1ex21(a, b, c);
+//        }
 
     }
 }
