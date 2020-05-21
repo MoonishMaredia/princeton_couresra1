@@ -147,6 +147,23 @@ public class Exercises {
         System.out.println(Arrays.deepToString(newarr));
     }
 
+//    What is the largest value of N for which this program takes less 1 hour to compute the
+//    value of F(N)? Develop a better implementation of F(N) that saves computed values in
+//    an array.
+
+    public long sec1ex19(int N, long[] arr) {
+
+        if ((N != 0) && (arr[N] != 0)) {
+            return arr[N];
+        } else if (N == 0) {
+            return arr[N];
+        } else {
+            long res = sec1ex19(N - 1, arr) + sec1ex19(N - 2, arr);
+            arr[N] = res;
+            return res;
+        }
+    }
+
 //    1.1.21 Write a program that reads in lines from standard input with each line containing a name and two integers and then uses printf() to print a table with a column of
 //    the names, the integers, and the result of dividing the first by the second, accurate to
 //    three decimal places. You could use a program like this to tabulate batting averages for
@@ -160,6 +177,14 @@ public class Exercises {
     public static void main(String[] args) {
 
         Exercises test = new Exercises();
+
+        int N = 60;
+        long[] pass = new long[N];
+        pass[0] = 0;
+        pass[1] = 1;
+
+        for (int i = 0; i < N; i++)
+            StdOut.println(i + " " + test.sec1ex19(i, pass));
 
 //        test.sec1ex1();
 //        test.sec1ex2();
