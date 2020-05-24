@@ -174,17 +174,39 @@ public class Exercises {
         StdOut.printf(a + " " + b + " " + c + " " + "%.4f\n", avg);
     }
 
+//    1.2.6 A string s is a circular rotation of a string t if it matches when the characters
+////    are circularly shifted by any number of positions; e.g., ACTGACG is a circular shift of
+////    TGACGAC, and vice versa. Detecting this condition is important in the study of genomic
+////    sequences. Write a program that checks whether two given strings s and t are circular
+//shifts of one another
+
+    public boolean sec2ex6(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+        String cntr = "";
+        for (int i = 0; i < s.length(); i++) {
+            String run = t.substring(i) + cntr;
+            if (s.equals(run)) {
+                return true;
+            } else {
+                cntr += t.substring(i, i + 1);
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
 
         Exercises test = new Exercises();
 
-        int N = 60;
-        long[] pass = new long[N];
-        pass[0] = 0;
-        pass[1] = 1;
+        String s = "ACTGATG";
+        String t = "TGACTGA";
 
-        for (int i = 0; i < N; i++)
-            StdOut.println(i + " " + test.sec1ex19(i, pass));
+        System.out.println(test.sec2ex6(s, t));
+
+        System.out.println(1 % 7);
+
 
 //        test.sec1ex1();
 //        test.sec1ex2();
@@ -220,6 +242,14 @@ public class Exercises {
 //            int c = in.readInt();
 //            test.sec1ex21(a, b, c);
 //        }
+
+//        int N = 60;
+//        long[] pass = new long[N];
+//        pass[0] = 0;
+//        pass[1] = 1;
+//
+//        for (int i = 0; i < N; i++)
+//            StdOut.println(i + " " + test.sec1ex19(i, pass));
 
     }
 }
