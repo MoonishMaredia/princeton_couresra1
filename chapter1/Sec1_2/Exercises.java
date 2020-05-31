@@ -233,15 +233,15 @@ public class Exercises {
 //        test.sec1ex13(testarr);
 
 
-//        In in = new In(args[0]);
-//        int n = in.readInt();
+        In in = new In(args[0]);
+        int n = in.readInt();
 //
-//        for (int i = 0; i < n; i++) {
-//            String a = in.readString();
-//            int b = in.readInt();
-//            int c = in.readInt();
-//            test.sec1ex21(a, b, c);
-//        }
+        for (int i = 0; i < n; i++) {
+            String a = in.readString();
+            int b = in.readInt();
+            int c = in.readInt();
+            test.sec1ex21(a, b, c);
+        }
 
 //        int N = 60;
 //        long[] pass = new long[N];

@@ -15,6 +15,8 @@ public class SmartDate {
 
     public SmartDate(int m, int d, int y) {
 
+        assert d > 0 : "Wrong Input";
+
         if ((d < 0) || (d > 31)) {
             throw new IllegalArgumentException("Invalid Day. Check your input");
         }
@@ -105,7 +107,7 @@ public class SmartDate {
     }
 
     public static void main(String[] args) {
-        SmartDate test = new SmartDate(11, 12, 2014);
+        SmartDate test = new SmartDate(-11, -12, 2014);
         System.out.println(test.toString());
         System.out.println(test.dayOfTheWeek());
     }
