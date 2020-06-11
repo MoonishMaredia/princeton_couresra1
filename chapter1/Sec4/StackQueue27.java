@@ -18,7 +18,6 @@ public class StackQueue27<Item> {
 
     public Item dequeue() {
 
-        int cnt = 0;
         while (size1 > 0) {
             stack2.push(stack1.pop());
             size1--;
