@@ -1,0 +1,18 @@
+2.1.15 Expensive exchange. A clerk at a shipping company is charged with the task of
+rearranging a number of large crates in order of the time they are to be shipped out.
+Thus, the cost of compares is very low (just look at the labels) relative to the cost of exchanges (move the crates).
+The warehouse is nearly full—there is extra space sufficient
+to hold any one of the crates, but not two. What sorting method should the clerk use?
+
+
+Selection sort. Moving the crates is expensive which means Insertion sort would be very costly because it would require
+shifting crates each time the index moves backwards to check.
+
+The clerk can check compare each crate and remember the location of the minimum for each index pass. Move the minimum to the empty
+space. Move the first to the space of the old one and move the minimum to the first, recreating the empty space.
+He can repeat this process multiple times. This will result in at most 3 moves for each pass
+(1 to move min to empty space, 1 to move first to space of min, 1 to move min to first space)
+
+Insertion sort for any large N will require movement of each crate to the right to insert the minimum on that pass to its rightful postion.
+Much more costly.
+

@@ -1,0 +1,6 @@
+2.1.10 Why not use selection sort for h-sorting in shellsort?
+
+Point of using h-sort is that insertion sort runs very fast when the array is mostly ordered.
+Doing h-sort using selection sort would not result in meaningful benefits when h=1 as each item in list would still
+need to traversed to find the minimum. With array mostly ordered, insertion sort will need to move items back
+a limited amount of steps

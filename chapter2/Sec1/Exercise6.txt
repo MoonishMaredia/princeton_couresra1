@@ -1,0 +1,14 @@
+2.1.6 Which method runs faster for an array with all keys identical, selection sort or
+insertion sort?
+
+Insertion sort will run faster. Selection sort needs to traverse the list to look for minimum elements
+as it crosses each index (N searches, N-1 searches, N-2 searches etc.)
+Insertion sort will traverse the list, compare the index at each value to its previous, realize it is equal and
+move on to the next element.
+For this case: Selection sort order of growth is O(n2/2), and insertion sort order of growth is O(n)
+
+
+
+
+
+
