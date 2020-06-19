@@ -1,4 +1,3 @@
-import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdRandom;
 
 
@@ -71,19 +70,15 @@ public class Exercise25 {
         }
     }
 
-    public static void genrandom() {
+    public static int[] genrandom(int n) {
 
-        /**
-         * Useful as first step in main client to generate a list of random integers
-         * that we will sort
-         * Items printed to standard output which can then be passed to a file
-         * @input: No input
-         * @return No return, only standard output
-         */
+        int[] arr = new int[n];
 
-        for (int i = 0; i < 500000; i++) {
-            System.out.println(StdRandom.uniform(-100000, 100000));
+        for (int i = 0; i < n; i++) {
+            arr[i] = StdRandom.uniform(-n / 2, n / 2);
         }
+
+        return arr;
     }
 
     public static boolean isSorted(int[] a) {
@@ -112,14 +107,15 @@ public class Exercise25 {
     }
 
     public static void main(String[] args) {
-//        Exercise25.genrandom();
 
-        int[] a = In.readInts(args[0]);
+        int[] a = Exercise25.genrandom(500000);
+        int[] b = a.clone();
+
         System.out.println(Exercise25.isSorted(a));
         System.out.println(Exercise25.time("sort1", a));
         System.out.println(Exercise25.isSorted(a));
 
-        int[] b = In.readInts(args[0]);
+
         System.out.println(Exercise25.isSorted(b));
         System.out.println(Exercise25.time("sort2", b));
         System.out.println(Exercise25.isSorted(b));
