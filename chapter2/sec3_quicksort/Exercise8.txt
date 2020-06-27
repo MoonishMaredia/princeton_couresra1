@@ -1,0 +1,7 @@
+2.3.8 About how many compares will Quick.sort() make when sorting an array of
+N items that are all equal?
+
+If all keys are equal, the partitioning item will also end up in the first position, then
+at the second position, then third...
+For first position, this will mean N-1 comparisons, then N-2 comparisons...
+This should converge to N(N-1)/2 compares when all items are equal

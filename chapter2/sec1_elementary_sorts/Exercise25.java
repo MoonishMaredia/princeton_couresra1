@@ -108,7 +108,7 @@ public class Exercise25 {
 
     public static void main(String[] args) {
 
-        int[] a = Exercise25.genrandom(500000);
+        int[] a = Exercise25.genrandom(100000);
         int[] b = a.clone();
 
         System.out.println(Exercise25.isSorted(a));

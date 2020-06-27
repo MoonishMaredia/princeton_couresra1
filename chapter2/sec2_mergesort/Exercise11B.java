@@ -1,3 +1,4 @@
+import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdRandom;
 
 @SuppressWarnings("unchecked")
@@ -124,29 +125,40 @@ public class Exercise11B {
 
     public static void main(String[] args) {
 
-        Comparable[] a = Exercise11.genrandom(10000000);
-        Comparable[] b = a.clone();
-        Comparable[] aux = a.clone();
+        int N = args.length;
+        In[] streams = new In[N];
+        for (int i = 0; i < N; i++)
+            streams[i] = new In(args[i]);
 
-        System.out.println(isSorted(a));
-        long startime = System.nanoTime();
-        Exercise11B.sort(a, aux);
-        long endtime = System.nanoTime();
-        long timeElapsed = endtime - startime;
-        System.out.println("Execution Time All 3 Improvements in nanoseconds : " + timeElapsed);
-        System.out.println(isSorted(aux));
+        int M = 0;
+        while (M < 10) {
+            System.out.println(streams[0].readString());
+            M++;
+        }
 
-        System.out.println(isSorted(b));
-        long startime2 = System.nanoTime();
-        Exercise11.sort(b);
-        long endtime2 = System.nanoTime();
-        long timeElapsed2 = endtime2 - startime2;
-        System.out.println("Execution Time 2 Improvements in nanoseconds : " + timeElapsed2);
-        System.out.println(isSorted(b));
-
-        double ratio = ((double) timeElapsed / timeElapsed2) * 100;
-        System.out.printf("The first method is %.02f" + " percent faster \n", (100 - ratio));
-        System.out.println("For Array Size of " + a.length);
+//        Comparable[] a = Exercise11.genrandom(100000);
+//        Comparable[] b = a.clone();
+//        Comparable[] aux = a.clone();
+//
+//        System.out.println(isSorted(a));
+//        long startime = System.nanoTime();
+//        Exercise11B.sort(a, aux);
+//        long endtime = System.nanoTime();
+//        long timeElapsed = endtime - startime;
+//        System.out.println("Execution Time All 3 Improvements in nanoseconds : " + timeElapsed);
+//        System.out.println(isSorted(aux));
+//
+//        System.out.println(isSorted(b));
+//        long startime2 = System.nanoTime();
+//        Exercise11.sort(b);
+//        long endtime2 = System.nanoTime();
+//        long timeElapsed2 = endtime2 - startime2;
+//        System.out.println("Execution Time 2 Improvements in nanoseconds : " + timeElapsed2);
+//        System.out.println(isSorted(b));
+//
+//        double ratio = ((double) timeElapsed / timeElapsed2) * 100;
+//        System.out.printf("The first method is %.02f" + " percent faster \n", (100 - ratio));
+//        System.out.println("For Array Size of " + a.length);
 
     }
 }

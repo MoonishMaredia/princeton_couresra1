@@ -1,0 +1,9 @@
+2.3.13 What is the recursive depth of quicksort, in the best, worst, and average cases?
+This is the size of the stack that the system needs to keep track of the recursive calls. See
+Exercise 2.3.20 for a way to guarantee that the recursive depth is logarithmic in the
+worst case
+
+1. In the worst case, you reduce the array by only 1 element each time. This would require N-1 recursive calls to fully sort the array.
+This it the worst case.
+2. The best case is if you split the array in exactly half each time. This would be logn recursive calls guaranteed.
+3. In the average case, as long as you split the array close to half each time, you will have ~logn recursive calls.
