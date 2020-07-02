@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f226cdfb-e258-49c4-bf8c-4690780a71b9" name="Default Changelist" comment="" />
+    <list default="true" id="8da06f51-cdff-4604-a801-a30ce1c8b859" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,18 +18,13 @@
     <analyzeAfterCompile>true</analyzeAfterCompile>
     <toolWindowToFront>false</toolWindowToFront>
   </component>
-  <component name="ProjectId" id="1duqSqcQSVyfLmHVBZU7hfCSFR5" />
+  <component name="ProjectId" id="1e3wyMcBgsQCApKOD8bFq2ja9gz" />
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\16023\Documents\GitHub\princeton_coursera1\chapter2\sec4_pq_heapsort" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
