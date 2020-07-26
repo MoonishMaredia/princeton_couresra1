@@ -136,7 +136,7 @@ public class Exercise3<Key extends Comparable<Key>, Value> {
     public static void main(String[] args) {
         Exercise3<Integer, String> test = new Exercise3<Integer, String>();
         test.put(1, "name");
-        test.put(3, "Moonish");
+        test.put(3, "Mike");
         test.put(0, "my");
         test.put(2, "is");
         test.put(4, "!");
