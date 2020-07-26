@@ -1,10 +1,8 @@
 import edu.princeton.cs.algs4.Stack;
-import edu.princeton.cs.algs4.StdRandom;
 
 public class Board {
 
     private final int[][] board;
-    private final int[] flat;
     private int blankrow;
     private int blankcol;
     private int blankflat;
@@ -14,14 +12,19 @@ public class Board {
         // create a board from an n-by-n array of tiles,
         // where tiles[row][col] = tile at (row, col)
 
-        board = tiles;
         int n = tiles.length;
-        int fsz = (n * n);
-        flat = new int[fsz];
+        if (n < 2)
+            throw new IllegalArgumentException("The input matrix should have at least 2 rows and 2 columns");
+
+        board = new int[n][n];
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++) {
+                board[i][j] = tiles[i][j];
+            }
+
         int idx = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                flat[idx] = board[i][j];
                 idx++;
                 if (board[i][j] == 0) {
                     blankrow = i;
@@ -36,16 +39,17 @@ public class Board {
         // string representation of this board
 
         int sz = board.length;
-        String res = "";
-        res += Integer.toString(sz);
+        StringBuilder res = new StringBuilder();
+        res.append(Integer.toString(sz));
 
         for (int i = 0; i < sz; i++) {
-            res += "\r\n";
+            res.append("\r\n");
             for (int j = 0; j < sz; j++) {
-                res += (Integer.toString(board[i][j]) + " ");
+                res.append(Integer.toString(board[i][j]));
+                res.append(" ");
             }
         }
-        return res;
+        return res.toString();
     }
 
 
@@ -54,10 +58,11 @@ public class Board {
         return board.length;
     }
 
-    public void getblankposition() {
-        // get the x,y position for the blank on the board
-        System.out.println("Blank is at (" + blankrow + " ," + blankcol + ")");
-    }
+//
+//    private void getblankposition() {
+//        // get the x,y position for the blank on the board
+//        System.out.println("Blank is at (" + blankrow + " ," + blankcol + ")");
+//    }
 
 
     public int hamming() {
@@ -94,7 +99,7 @@ public class Board {
         return sum;
     }
 
-    public int manhdist(int elem, int currow, int curcol, int sz) {
+    private int manhdist(int elem, int currow, int curcol, int sz) {
         // helper function to calculate the manhattan distances
         int frow = (elem - 1) / sz;
         int fcol = (elem - 1) % sz;
@@ -103,23 +108,9 @@ public class Board {
         return res;
     }
 
-    public int[][] createGoal(int sz) {
-        // creates a goal board based on the size of the board (nxn)
-        int[][] glarr = new int[sz][sz];
-        int pos = 1;
-        for (int i = 0; i < sz; i++)
-            for (int j = 0; j < sz; j++) {
-                glarr[i][j] = pos;
-                pos++;
-            }
-        glarr[sz - 1][sz - 1] = 0;
-        return glarr;
-    }
-
-
     public boolean isGoal() {
         // is this board the goal board?
-        return this.equals(new Board(createGoal(board.length)));
+        return (this.manhattan() == 0);
     }
 
 
@@ -148,15 +139,15 @@ public class Board {
         return true;
     }
 
-    public void swap(int[][] dblarr, int currow, int curcol, int newrow, int newcol) {
-        // swaps elements in a nxn array given (cur row, cur col) -> (new row, new col)
+    private void swap(int[][] dblarr, int currow, int curcol, int newrow, int newcol) {
+        // swaps elements in a n x n array given (cur row, cur col) -> (new row, new col)
 
         int temp = dblarr[currow][curcol];
         dblarr[currow][curcol] = dblarr[newrow][newcol];
         dblarr[newrow][newcol] = temp;
     }
 
-    public int[][] copy() {
+    private int[][] copy() {
         // creates a new copy of the existing board
 
         int n = board.length;
@@ -176,7 +167,7 @@ public class Board {
 
         Stack<Board> itStack = new Stack<>();
 
-        //up
+        // up
         if (blankrow != 0) {
             int[][] up = copy();
             swap(up, blankrow, blankcol, blankrow - 1, blankcol);
@@ -184,7 +175,7 @@ public class Board {
             itStack.push(up1);
         }
 
-        //down
+        // down
         if (blankrow != board.length - 1) {
             int[][] down = copy();
             swap(down, blankrow, blankcol, blankrow + 1, blankcol);
@@ -192,7 +183,7 @@ public class Board {
             itStack.push(down1);
         }
 
-        //left
+        // left
         if (blankcol != 0) {
             int[][] left = copy();
             swap(left, blankrow, blankcol, blankrow, blankcol - 1);
@@ -200,7 +191,7 @@ public class Board {
             itStack.push(left1);
         }
 
-        //right
+        // right
         if (blankcol != board.length - 1) {
             int[][] right = copy();
             swap(right, blankrow, blankcol, blankrow, blankcol + 1);
@@ -211,39 +202,27 @@ public class Board {
         return itStack;
     }
 
-    //
-
     public Board twin() {
         // a board that is obtained by exchanging any pair of tiles
 
         int[][] randarr = copy();
         int sz = board.length;
 
-        int j = 0;
-        while (true) {
-            j += StdRandom.uniform(0, flat.length);
-            if (j != blankflat)
-                break;
-            j -= j;
-        }
-
-        int rand1 = j;
-
-        int k = 0;
-        while (true) {
-            k += StdRandom.uniform(0, flat.length);
-            if ((k != rand1) && (k != blankflat)) {
-                break;
+        for (int i = 0; i < sz; i++)
+            for (int j = 0; j < sz - 1; j++) {
+                if ((i == blankrow) && (j == blankcol)) {
+                    continue;
+                } else if ((i == blankrow) && (j + 1 == blankcol)) {
+                    swap(randarr, i, j, i + 1, j);
+                    Board twinres = new Board(randarr);
+                    return twinres;
+                } else {
+                    swap(randarr, i, j, i, j + 1);
+                    Board twinres = new Board(randarr);
+                    return twinres;
+                }
             }
-            k -= k;
-        }
-
-        int rand2 = k;
-
-        swap(randarr, rand1 / sz, (rand1 % sz), rand2 / sz, (rand2 % sz));
-        Board twinres = new Board(randarr);
-
-        return twinres;
+        throw new RuntimeException();
     }
 
 
@@ -267,45 +246,48 @@ public class Board {
 //        test[3][2] = 15;
 //        test[3][3] = 0;
 
-        int[][] test = new int[3][3];
-        test[0][0] = 0;
-        test[0][1] = 4;
-        test[0][2] = 2;
-        test[1][0] = 3;
-        test[1][1] = 5;
-        test[1][2] = 7;
-        test[2][0] = 6;
-        test[2][1] = 8;
-        test[2][2] = 1;
-
-        Board puzzle = new Board(test);
-
-        System.out.println("======= Print the Puzzle =======");
-        System.out.println(puzzle.toString());
-
-        System.out.println("======= Print the Hamming Distance =======");
-        System.out.println(puzzle.hamming());
-
-        System.out.println("======= Print the Manhattan Distance =======");
-        System.out.println(puzzle.manhattan());
-
-        System.out.println("======= Is this is the goal board? =======");
-        System.out.println(puzzle.isGoal());
-        Board goal = new Board(puzzle.createGoal(test.length));
-        System.out.println(goal.toString());
-
-        System.out.println("======= Are these goal boards equal? =======");
-        Board puzzle2 = new Board(test);
-        System.out.println(puzzle.equals(puzzle2));
-
-        System.out.println("======= Boards Iterator Object =======");
-        Iterable<Board> it = puzzle.neighbors();
-        puzzle.getblankposition();
-        for (Board s : it)
-            System.out.println(s.toString());
-
-        System.out.println("======= Twin Object =======");
-        Board twin = puzzle.twin();
-        System.out.println(twin.toString());
+//        int[][] test = new int[3][3];
+//        test[0][0] = 0;
+//        test[0][1] = 4;
+//        test[0][2] = 2;
+//        test[1][0] = 3;
+//        test[1][1] = 5;
+//        test[1][2] = 7;
+//        test[2][0] = 6;
+//        test[2][1] = 8;
+//        test[2][2] = 1;
+//
+//        Board puzzle = new Board(test);
+//
+//        System.out.println("======= Print the Puzzle =======");
+//        System.out.println(puzzle.toString());
+//
+//        System.out.println("======= Print the Hamming Distance =======");
+//        System.out.println(puzzle.hamming());
+//
+//        System.out.println("======= Print the Manhattan Distance =======");
+//        System.out.println(puzzle.manhattan());
+//
+//        System.out.println("======= Is this is the goal board? =======");
+//        System.out.println(puzzle.isGoal());
+//        Board goal = new Board(puzzle.createGoal(test.length));
+//        System.out.println(goal.toString());
+//
+//        System.out.println("======= Are these goal boards equal? =======");
+//        Board puzzle2 = new Board(test);
+//        System.out.println(puzzle.equals(puzzle2));
+//
+//        System.out.println("======= Boards Iterator Object =======");
+//        Iterable<Board> it = puzzle.neighbors();
+//        for (Board s : it)
+//            System.out.println(s.toString());
+//
+//        System.out.println("======= Twin Object =======");
+//        Board twin1 = puzzle.twin();
+//        System.out.println(twin1.toString());
+//
+//        System.out.println("======= Twin Object2 =======");
+//        Board twin2 = puzzle.twin();
+//        System.out.println(twin2.toString());
     }
 }

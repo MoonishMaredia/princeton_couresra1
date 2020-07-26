@@ -1,15 +1,12 @@
 import edu.princeton.cs.algs4.MinPQ;
 import edu.princeton.cs.algs4.Stack;
 
-//implementation details adapted from hangingdev github
+// implementation details adapted from hangingdev github
 
 public class Solver {
 
     private final MinPQ<SearchNode> pq;
-    private final MinPQ<SearchNode> pqTwin;
-    private final int n;
-    private final Board initial;
-    private final Board goal;
+//    private final Board goal;
 
     private class SearchNode implements Comparable<SearchNode> {
         private final Board board;
@@ -30,17 +27,14 @@ public class Solver {
     }
 
     // find a solution to the initial board (using the A* algorithm)
-    public Solver(Board initial) {
+    public Solver(Board init) {
+
+        Board initial = init;
         if (initial == null)
             throw new NullPointerException("The initial board is null. Pass an appropriate initial board");
 
-        this.initial = initial;
-        n = initial.dimension();
-
         pq = new MinPQ<SearchNode>();
-        pqTwin = new MinPQ<SearchNode>();
-
-        goal = new Board(initial.createGoal(n));
+        MinPQ<SearchNode> pqTwin = new MinPQ<SearchNode>();
 
         SearchNode deque;
         SearchNode dequetwin;
@@ -48,7 +42,7 @@ public class Solver {
         pq.insert(new SearchNode(initial, 0, null));
         pqTwin.insert(new SearchNode(initial.twin(), 0, null));
 
-        while (!pq.min().board.equals(goal) && !pqTwin.min().board.equals(goal)) {
+        while (!pq.min().board.isGoal() && !pqTwin.min().board.isGoal()) {
 
             deque = pq.delMin();
             dequetwin = pqTwin.delMin();
@@ -73,10 +67,8 @@ public class Solver {
 
     // is the initial board solvable? (see below)
     public boolean isSolvable() {
-        if (pq.min().board.equals(goal)) {
+        if (pq.min().board.isGoal()) {
             return true;
-        } else if (pqTwin.min().equals(goal)) {
-            return false;
         } else {
             return false;
         }
@@ -111,23 +103,24 @@ public class Solver {
     // test client (see below)
     public static void main(String[] args) {
 
-        int[][] test = new int[3][3];
-        test[0][0] = 1;
-        test[0][1] = 2;
-        test[0][2] = 3;
-        test[1][0] = 4;
-        test[1][1] = 0;
-        test[1][2] = 6;
-        test[2][0] = 7;
-        test[2][1] = 5;
-        test[2][2] = 8;
+//        int[][] test = new int[3][3];
+//        test[0][0] = 0;
+//        test[0][1] = 4;
+//        test[0][2] = 2;
+//        test[1][0] = 3;
+//        test[1][1] = 5;
+//        test[1][2] = 7;
+//        test[2][0] = 6;
+//        test[2][1] = 8;
+//        test[2][2] = 1;
+//
+//        Board puzzle = new Board(test);
+//        Solver result = new Solver(puzzle);
+//        System.out.println(result.isSolvable());
+//        Iterable<Board> itr = result.solution();
+//        for (Board seq : itr) {
+//            System.out.println(seq.toString());
+//        }
 
-        Board puzzle = new Board(test);
-        Solver result = new Solver(puzzle);
-        System.out.println(result.isSolvable());
-        Iterable<Board> itr = result.solution();
-        for (Board seq : itr) {
-            System.out.println(seq.toString());
-        }
     }
 }
