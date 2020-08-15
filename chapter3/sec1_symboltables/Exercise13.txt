@@ -1,0 +1,7 @@
+3.1.13 Which of the symbol-table implementations in this section would you use for
+an application that does 10^3 put() operations and 10^6 get() operations, randomly
+intermixed? Justify your answer
+
+On average, the put operations are equally as costly between the linked and Binary Ordered
+structures. However, for ordered structures, the get operations are logN whereas they are
+linear for the linked operations

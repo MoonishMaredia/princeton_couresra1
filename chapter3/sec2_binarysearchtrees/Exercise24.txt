@@ -1,0 +1,37 @@
+3.2.24 Prove that no compare-based algorithm can build a BST using fewer than
+lg(N !) ~ N lg N compares.
+
+
+//Crappy proof
+
+For a given tree of size k (# of elements), a perfectly balanced tree will have k+1/2 nodes in its final level.
+Each set of 2 nodes in final level corresponds to 1 node in level above, and this is recursively true
+up to the root node.
+
+This is to say that the level of the depth of the tree can be represented with h where:
+
+(k+1)/2 = 2^h
+log(k+1/2) = hlog(2)
+log(k+1/2) = h
+
+Accounting for root node:
+h = log(k+1)/2) + 1
+
+This can be simplified to:
+log(k+1)/2) + log(2) = log(k+1) = h
+
+This suggests that for a perfect tree the height is represented by a log of base 2. This means
+that for any new items added to the tree, it needs to traverse at least h elements, one on each level prior
+to adding an entirely new element. This means that there is a best case limit on tree construction given by
+# of elements needing traversal each time. From above, we know h elements traversed for a new element, which is ~log2(# of elements in tree)
+
+
+Using this result, we can calculate # of best case compares.
+With 0 element, it takes lg2(1)
+With 1 elements, it takes lg2(2)
+With 2 elements, it takes lg(3)
+With 3 elements, it takes lg(4)
+lg(1) + lg(2) + lg(3) + lg(4) +...+ lg(n) = lg(1*2*3*4*...*n) = lg(n!) which can be upper bounded as nlg(n)
+
+
+

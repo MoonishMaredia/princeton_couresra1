@@ -1,0 +1,13 @@
+3.2.3 Give five orderings of the keys A X C S E R H that, when inserted into an initially
+empty BST, produce the best-case tree.
+
+A, C, E, H, R, S, X
+
+                    H
+                C       S
+              A  E    R   X
+
+
+
+Balanced Binary search tree such that nodes to the left of the root is less than the root and nodes
+ to the right of the root is greater. This is also true for the subtrees

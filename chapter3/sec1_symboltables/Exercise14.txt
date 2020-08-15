@@ -1,0 +1,12 @@
+3.1.14 Which of the symbol-table implementations in this section would you use for
+an application that does 10 6 put() operations and 10 3 get() operations, randomly
+intermixed? Justify your answer.
+
+
+On average, the put operations are equally as costly between the linked and Binary Ordered
+structures. However, for ordered structures, the get operations are logN whereas they are
+linear for the linked operations.
+
+Put operations can be slightly more costly for the ordered structure but it depends on the
+input and the position its inserted. Inputting a quasi-reverse sorted array would require
+lots of shifting operations. On average, however, you would still prefer the ordered array

@@ -1,0 +1,14 @@
+3.2.5 Suppose that we have an estimate ahead of time of how often search keys are
+to be accessed in a BST, and the freedom to insert them in any order that we desire.
+Should the keys be inserted into the tree in increasing order, decreasing order of likely
+frequency of access, or some other order? Explain your answer
+
+It depends on how many searches you need to do. If # of searches are very few, it won't really matter.
+
+But if # of searches are meaningful, you want the tree designed such that it maintains balance;
+~ equal depth from root on both left and right subtree and equal amount of nodes on each side.
+This will close to guarantee the ~2ln(n) (efficient search).
+To achieve this, you should insert the elements in random order or pre-design an order
+that would guarantee a balanced search tree based on your inputs
+
+Adding in increasing or decreasing order would create a one-sided tree and would take time of O(n) to search

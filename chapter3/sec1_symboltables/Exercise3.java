@@ -108,14 +108,12 @@ public class Exercise3<Key extends Comparable<Key>, Value> {
     public Iterable<Key> Keys() {
 
         List<Key> arr = new ArrayList<Key>();
-        int i = 0;
         Node x = first;
 
         while (x != null) {
             if (x.val != null) {
                 arr.add(x.key);
             }
-            i++;
             x = x.next;
         }
         return arr;
@@ -134,37 +132,37 @@ public class Exercise3<Key extends Comparable<Key>, Value> {
     }
 
     public static void main(String[] args) {
-        Exercise3<Integer, String> test = new Exercise3<Integer, String>();
-        test.put(1, "name");
-        test.put(3, "Mike");
-        test.put(0, "my");
-        test.put(2, "is");
-        test.put(4, "!");
-        test.put(5, "Jeff");
-        test.printlist();
-        System.out.println(test.getSize());
-
-        System.out.println("===Getting Function Test===");
-        System.out.println(test.get(2));
-        System.out.println(test.get(4));
-        System.out.println(test.get(-10));
-
-        System.out.println("===Deleting Function Test===");
-        test.delete(2);
-        test.delete(4);
-        test.delete(3);
-        test.printlist();
-        System.out.println(test.getSize());
-
-        System.out.println("===Contains Function Test===");
-        System.out.println(test.contains(2));
-        System.out.println(test.contains(5));
-        test.printlist();
-
-        System.out.println("===Get Iterable===");
-        Iterable<Integer> itr = test.Keys();
-        for (Integer elem : itr) {
-            System.out.println(elem);
-        }
+//        Exercise3<Integer, String> test = new Exercise3<Integer, String>();
+//        test.put(1, "name");
+//        test.put(3, "Mike");
+//        test.put(0, "my");
+//        test.put(2, "is");
+//        test.put(4, "!");
+//        test.put(5, "Jeff");
+//        test.printlist();
+//        System.out.println(test.getSize());
+//
+//        System.out.println("===Getting Function Test===");
+//        System.out.println(test.get(2));
+//        System.out.println(test.get(4));
+//        System.out.println(test.get(-10));
+//
+//        System.out.println("===Deleting Function Test===");
+//        test.delete(2);
+//        test.delete(4);
+//        test.delete(3);
+//        test.printlist();
+//        System.out.println(test.getSize());
+//
+//        System.out.println("===Contains Function Test===");
+//        System.out.println(test.contains(2));
+//        System.out.println(test.contains(5));
+//        test.printlist();
+//
+//        System.out.println("===Get Iterable===");
+//        Iterable<Integer> itr = test.Keys();
+//        for (Integer elem : itr) {
+//            System.out.println(elem);
+//        }
     }
 }
