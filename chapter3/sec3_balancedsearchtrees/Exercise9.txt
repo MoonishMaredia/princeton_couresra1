@@ -1,0 +1,12 @@
+Which of the following are red-black BSTs?
+
+(i) Not a red-black BST. Fails the condition that the tree needs to perfectly balanced in black links. The null
+links below A node is 1 black link away while null links below D node are 3 black links away
+
+(ii) Not a Red-Black BST for same reason as above
+
+(iii) Yes
+
+(iv) Yes
+
+

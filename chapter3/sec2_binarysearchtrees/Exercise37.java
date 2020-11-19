@@ -68,7 +68,7 @@ import java.util.NoSuchElementException;
  * @author Robert Sedgewick
  * @author Kevin Wayne
  */
-public class BST<Key extends Comparable<Key>, Value> {
+public class Exercise37<Key extends Comparable<Key>, Value> {
     private Node root;             // root of BST
 
     private class Node {
@@ -87,7 +87,7 @@ public class BST<Key extends Comparable<Key>, Value> {
     /**
      * Initializes an empty symbol table.
      */
-    public BST() {
+    public Exercise37() {
     }
 
     /**
@@ -251,8 +251,11 @@ public class BST<Key extends Comparable<Key>, Value> {
             printInOrder(root);
         } else if (order.equals("PreOrder")) {
             printPreOrder(root);
-        } else if (order.equals("PostOrder"))
+        } else if (order.equals("PostOrder")) {
             printPostOrder(root);
+        } else if (order.equals("LevelOrder")) {
+            printLevelOrder();
+        }
     }
 
     private void printInOrder(Node x) {
@@ -274,6 +277,25 @@ public class BST<Key extends Comparable<Key>, Value> {
         printPostOrder(x.left);
         printPostOrder(x.right);
         StdOut.println(x.key);
+    }
+
+    private void printLevelOrder() {
+
+        Queue<Node> q = new Queue<Node>();
+        q.enqueue(root);
+        printLevelOrder(q);
+    }
+
+    private void printLevelOrder(Queue<Node> q) {
+
+        while (q.size() > 0) {
+            Node x = q.dequeue();
+            StdOut.println(x.key);
+            if (x.left != null)
+                q.enqueue(x.left);
+            if (x.right != null)
+                q.enqueue(x.right);
+        }
     }
 
     /**
@@ -566,7 +588,7 @@ public class BST<Key extends Comparable<Key>, Value> {
     }
 
     public static void main(String[] args) {
-        BST<Integer, String> test1 = new BST<Integer, String>();
+        Exercise37<Integer, String> test1 = new Exercise37<Integer, String>();
 
         test1.put(4, "Four");
         test1.put(2, "Two");
@@ -580,6 +602,8 @@ public class BST<Key extends Comparable<Key>, Value> {
         test1.print("PreOrder");
         System.out.println("-----PostOrder------");
         test1.print("PostOrder");
+        System.out.println("-----LevelOrder------");
+        test1.print("LevelOrder");
 
     }
 

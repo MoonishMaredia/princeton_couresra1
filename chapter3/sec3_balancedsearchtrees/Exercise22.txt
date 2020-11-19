@@ -1,0 +1,23 @@
+3.3.22 Find a sequence of keys to insert into a BST and into a red-black BST such that
+the height of the BST is less than the height of the red-black BST, or prove that no such
+sequence is possible.
+
+Such a sequence exits:
+4 3 6 2 5 7
+
+Key insight - given the constraints of self-balance for the tree, you can have instances where passing of links
+up the tree forces a split at the root resulting in an increase in height that wouldn't otherwise occur for a standard BST
+
+Standard BST:
+           4
+        3     6
+       2     5  7
+
+Red Black BST:
+           6
+          //  \
+         4      7
+        / \
+       3   5
+      //
+     2

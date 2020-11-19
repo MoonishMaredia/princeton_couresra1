@@ -1,0 +1,6 @@
+TBD on this one. I can't think of an obvious counterexample
+
+Given RB BST is left leaning, it seems that adding and removing a minimum will result in the same tree.
+That, however, may not be the case for adding and removing a maximum
+
+Argento's solution doesn't seem to work...

@@ -4,7 +4,7 @@ lg(N !) ~ N lg N compares.
 
 //Crappy proof
 
-For a given tree of size k (# of elements), a perfectly balanced tree will have k+1/2 nodes in its final level.
+For a given tree of size k (# of elements), a perfectly balanced tree will have (k+1)/2 nodes in its final level.
 Each set of 2 nodes in final level corresponds to 1 node in level above, and this is recursively true
 up to the root node.
 
